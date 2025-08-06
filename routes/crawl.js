@@ -1,4 +1,4 @@
-import { crawlHTML } from '../utils/crawler.js';
+import { crawlHTML, getBrowserStats } from '../utils/crawler.js';
 
 async function crawlRoutes(fastify, options) {
   fastify.post('/crawl', async (request, reply) => {
@@ -15,6 +15,16 @@ async function crawlRoutes(fastify, options) {
     }
 
     return reply.send(result);
+  });
+
+  // Health check endpoint for browser status
+  fastify.get('/health', async (request, reply) => {
+    const stats = getBrowserStats();
+    return reply.send({
+      status: 'ok',
+      browser: stats,
+      timestamp: new Date().toISOString()
+    });
   });
 }
 
