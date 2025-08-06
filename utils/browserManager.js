@@ -5,7 +5,7 @@ export class BrowserManager {
     this.browser = null;
     this.browserPromise = null;
     this.activePagesCount = 0;
-    this.maxPages = 10; // Limit concurrent pages
+    this.maxPages = 5; // Limit concurrent pages
   }
 
   async getBrowser() {
